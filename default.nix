@@ -10,6 +10,8 @@ let
     mcsl = callPackage ./pkgs/mcsl {};
     cmdline = callPackage ./pkgs/cmdline {};
 
+    emacs = callPackage ./pkgs/emacs {};
+
     inherit pkgs;
   };
 in
