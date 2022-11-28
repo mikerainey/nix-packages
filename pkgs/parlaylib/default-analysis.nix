@@ -1,8 +1,8 @@
-{ stdenv, fetchgit, cmake, gbenchmark-src }:
+{ stdenv, fetchgit, cmake }:
 
 stdenv.mkDerivation rec {
 
-  name = "parlaylib-benchmark";
+  name = "parlaylib-analysis";
 
   src = fetchgit {
     url = "https://github.com/cmuparlay/parlaylib.git";

@@ -1,8 +1,8 @@
-{ stdenv, fetchgit, cmake, gbenchmark-src }:
+{ stdenv, fetchgit, cmake }:
 
 stdenv.mkDerivation rec {
 
-  name = "parlaylib-benchmark";
+  name = "parlaylib-examples";
 
   src = fetchgit {
     url = "https://github.com/cmuparlay/parlaylib.git";
@@ -14,12 +14,12 @@ stdenv.mkDerivation rec {
 
   configurePhase = ''
     mkdir -p build
-    cmake . -DCMAKE_INSTALL_PREFIX:PATH=$out -DCMAKE_BUILD_TYPE=Release -DPARLAY_BENCHMARK=On -DFETCHCONTENT_SOURCE_DIR_BENCHMARK=${gbenchmark-src}
+    cmake . -DCMAKE_INSTALL_PREFIX:PATH=$out -DCMAKE_BUILD_TYPE=Release -DPARLAY_EXAMPLES=On
   '';
 
   buildPhase = ''
     cmake --build . --target install
-    cp -R benchmark $out/
+    cp -R examples $out/
   '';
   
 }
