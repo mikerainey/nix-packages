@@ -1,4 +1,4 @@
-{ stdenv, fetchgit, cmake }:
+{ stdenv, fetchgit, cmake, gbenchmark-src }:
 
 stdenv.mkDerivation rec {
 
@@ -13,11 +13,13 @@ stdenv.mkDerivation rec {
   buildInputs = [ cmake ];
 
   configurePhase = ''
-    cmake . -DCMAKE_INSTALL_PREFIX:PATH=$out
+    mkdir -p build
+    cmake . -DCMAKE_INSTALL_PREFIX:PATH=$out -DCMAKE_BUILD_TYPE=Release -DPARLAY_BENCHMARK=On -DFETCHCONTENT_SOURCE_DIR_BENCHMARK=${gbenchmark-src}
   '';
 
   buildPhase = ''
     cmake --build . --target install
+    cp -R benchmark $out/
   '';
   
 }
