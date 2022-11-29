@@ -1,5 +1,11 @@
 { stdenv, fetchgit, cmake }:
 
+# TODO:
+#  - downloading of input data (optional)
+#  - jemalloc/numactl (optional)
+#  - configurable scheduler
+#  - configurable compiler (needed?)
+
 stdenv.mkDerivation rec {
 
   name = "parlaylib-examples";

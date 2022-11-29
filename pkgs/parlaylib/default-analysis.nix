@@ -1,5 +1,7 @@
 { stdenv, fetchgit, cmake }:
 
+# TODO: see if all dependencies are available in nixpkgs and get it working
+
 stdenv.mkDerivation rec {
 
   name = "parlaylib-analysis";
