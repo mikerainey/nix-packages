@@ -6,8 +6,8 @@ stdenv.mkDerivation rec {
 
   src = fetchgit {
     url = "https://github.com/cmuparlay/parlaylib.git";
-    rev = "6302233a72199b9a0f69e4bdb63928ebf5e8f3cc";
-    sha256 = "0gh8gidb8f8da3cc10wxbc9vrlgl5bq0sa3s5hllmd77dfjkp4mh";
+    rev = "7cdb4cae8f020525f5eb4ad82e2565d1e38cfbc3";
+    sha256 = "sha256-ZOmqME4T5Uc9OMDswCj5z6c+I1KG3fBiWIYDMFyeJ74=";
   };
 
   buildInputs = [ cmake ];
