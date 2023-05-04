@@ -2,7 +2,7 @@
 
 stdenv.mkDerivation rec {
 
-  name = "parlaylib-examples";
+  name = "parlaylib-taskparts-examples";
 
   src = parlaylibSrc;
   
