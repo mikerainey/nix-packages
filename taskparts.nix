@@ -5,11 +5,14 @@ with pkgs;
 let
   packages = rec {
 
-    taskpartsSrc = fetchgit {
-      url = "https://github.com/mikerainey/taskparts.git";
-      rev = "b52dec0f42e15da4158e84884930e63c73a2a02f";
-      sha256 = "sha256-ryxBVNb1kBlHIc/um+OiUz8tNHnQHFHjBSUielBvnkg=";
-    };
+    #####################################################################
+    # taskpartsSrc = fetchgit {                                         #
+    #   url = "https://github.com/mikerainey/taskparts.git";            #
+    #   rev = "b52dec0f42e15da4158e84884930e63c73a2a02f";               #
+    #   sha256 = "sha256-ryxBVNb1kBlHIc/um+OiUz8tNHnQHFHjBSUielBvnkg="; #
+    # };                                                                #
+    #####################################################################
+    taskpartsSrc = ./../successor;
     taskparts = callPackage ./pkgs/taskparts/default.nix { taskpartsSrc=taskpartsSrc; };
 
     #####################################################################
