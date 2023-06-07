@@ -15,7 +15,7 @@ stdenv.mkDerivation rec {
   '';
 
   buildPhase = ''
-    cmake --build . --target install -j
+    cmake --build . --target install -j $NIX_BUILD_CORES
     cp -R examples $out/
   '';
   
