@@ -31,6 +31,8 @@ let
       gcc7 = pkgs.gcc7;
     };
 
+    smlfmt = callPackage ./pkgs/smlfmt {};
+
     inherit pkgs;
   };
 in
