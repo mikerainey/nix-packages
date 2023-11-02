@@ -24,9 +24,9 @@ let
     #####################################################################
     parlaylibSrc=./../parlaylib;
     
-    parlaylib-taskparts-examples = callPackage ./pkgs/parlaylib-taskparts/default-examples.nix { taskparts=taskparts; parlaylibSrc=parlaylibSrc; };
+#    parlaylib-taskparts-examples = callPackage ./pkgs/parlaylib-taskparts/default-examples.nix { taskparts=taskparts; parlaylibSrc=parlaylibSrc; };
 #    parlaylib-cilkplus-examples = callPackage ./pkgs/parlaylib-cilkplus/default-examples.nix { stdenv=pkgs.gcc7Stdenv; parlaylibSrc=parlaylibSrc; };
-#    parlaylib-examples = callPackage ./pkgs/parlaylib/default-examples.nix { parlaylibSrc=parlaylibSrc; };
+    parlaylib-examples = callPackage ./pkgs/parlaylib/default-examples.nix { parlaylibSrc=parlaylibSrc; };
     
     inherit pkgs;
   };

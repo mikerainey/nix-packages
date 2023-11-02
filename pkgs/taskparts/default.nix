@@ -7,13 +7,16 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ cmake ] ++ (if hwloc == null then [] else [ hwloc ]);
 
+  header-only = false;
+
+  elastic-scheduling = enable-elastic-scheduling;
+
+  hwloc-cfg = if hwloc == null then "" else "-DHWLOC_DEV_PATH=${hwloc.dev} -DHWLOC_LIB_PATH=${hwloc.lib}";
+  elastic-cfg = if enable-elastic-scheduling then "" else "-DNONELASTIC=ON";
+  cfg = "${hwloc-cfg} ${elastic-cfg}";
+  
   # for debugging:  -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
   configurePhase =
-    let
-      hwloc-cfg = if hwloc == null then "" else "-DHWLOC_DEV_PATH=${hwloc.dev} -DHWLOC_LIB_PATH=${hwloc.lib}";
-      elastic-cfg = if enable-elastic-scheduling then "" else "-DNONELASTIC=ON";
-      cfg = "${hwloc-cfg} ${elastic-cfg}";
-    in
       ''
       mkdir -p build
       cmake . -DCMAKE_INSTALL_PREFIX:PATH=$out -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DSTATS=ON ${cfg}

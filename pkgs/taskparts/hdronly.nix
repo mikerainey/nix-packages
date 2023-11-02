@@ -1,4 +1,4 @@
-{ stdenv, taskpartsSrc, cmake }:
+{ stdenv, taskpartsSrc, cmake, enable-elastic-scheduling }:
 
 stdenv.mkDerivation rec {
   name = "taskparts-hdronly";
@@ -6,6 +6,10 @@ stdenv.mkDerivation rec {
   src = taskpartsSrc;
 
   buildInputs = [ cmake ];
+
+  header-only = true;
+
+  elastic-scheduling = enable-elastic-scheduling;
 
   configurePhase =
     ''
