@@ -33,6 +33,8 @@ let
 
     smlfmt = callPackage ./pkgs/smlfmt {};
 
+    taskparts-hdronly = callPackage ./pkgs/taskparts/hdronly.nix {taskpartsSrc = ./../successor;};
+
     inherit pkgs;
   };
 in
