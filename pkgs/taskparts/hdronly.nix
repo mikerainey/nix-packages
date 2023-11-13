@@ -1,4 +1,4 @@
-{ stdenv, taskpartsSrc, cmake, enable-elastic-scheduling }:
+{ stdenv, taskpartsSrc, cmake, disable-elastic-scheduling ? false, use-ywra-deque ? false }:
 
 stdenv.mkDerivation rec {
   name = "taskparts-hdronly";
@@ -9,7 +9,9 @@ stdenv.mkDerivation rec {
 
   header-only = true;
 
-  elastic-scheduling = enable-elastic-scheduling;
+  elastic-scheduling-disabled = disable-elastic-scheduling;
+
+  ywra-deque-enabled = if use-ywra-deque && !disable-elastic-scheduling then throw "ywra deque is enabled by default in elastic scheduling" else use-ywra-deque;
 
   configurePhase =
     ''
