@@ -5,7 +5,9 @@
     sha256 = "sha256-YGIB922DD0XZ36gOEyVpAfiJ3bfBSw+dxe0nuV0SiZc=";
   },
   parlaySequential ? false, taskparts ? null, parlayCilkPlus ? false, parlayOpenCilk ? false, parlayOpenMP ? false,
-  parlayExamples ? false, parlayInstallExamples ? false, parlayExampleData ? false, parlayFewExamples ? false
+  parlayExamples ? false, parlayInstallExamples ? false, parlayExampleData ? false, parlayFewExamples ? false,
+  gbenchmarkSrc ? null,
+  gtestSrc ? null
 }:
 
 stdenv.mkDerivation rec {
@@ -27,6 +29,9 @@ stdenv.mkDerivation rec {
     (lib.strings.optionalString parlayCilkPlus "-DPARLAY_CILKPLUS=ON")
     (lib.strings.optionalString parlayOpenCilk "-DPARLAY_OPENCILK=ON")
     (lib.strings.optionalString parlayOpenMP "-DPARLAY_OPENMP=ON")
+    (lib.strings.optionalString (gbenchmarkSrc != null) "-DFETCHCONTENT_SOURCE_DIR_BENCHMARK=${gbenchmarkSrc}")
+    (lib.strings.optionalString (gtestSrc != null) "-DCMAKE_BUILD_TYPE=Debug")
+    (lib.strings.optionalString (gtestSrc != null) "-DFETCHCONTENT_SOURCE_DIR_GOOGLETEST=${gtestSrc}")
   ];
 
   meta = {
