@@ -1,31 +1,28 @@
-{ stdenv, taskpartsSrc, cmake, hwloc, enable-elastic-scheduling ? (hwloc != null) }:
+{ stdenv, lib, taskpartsSrc, cmake,
+  sharedLinkedLibraryEnable ? false,
+  statsEnable ? false, loggingEnable ? false,
+  chaseLevDequeEnable ? false,
+  hwloc ? null
+}:
 
 stdenv.mkDerivation rec {
   name = "taskparts";
 
   src = taskpartsSrc;
 
-  buildInputs = [ cmake ] ++ (if hwloc == null then [] else [ hwloc ]);
-
-  header-only = false;
-
-  elastic-scheduling = enable-elastic-scheduling;
-
-  hwloc-cfg = if hwloc == null then "" else "-DHWLOC_DEV_PATH=${hwloc.dev} -DHWLOC_LIB_PATH=${hwloc.lib}";
-  elastic-cfg = if enable-elastic-scheduling then "" else "-DNONELASTIC=ON";
-  cfg = "${hwloc-cfg} ${elastic-cfg}";
-  
-  # for debugging:  -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
-  configurePhase =
-      ''
-      mkdir -p build
-      cmake . -DCMAKE_INSTALL_PREFIX:PATH=$out -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DCMAKE_BUILD_TYPE=Release -DSTATS=ON ${cfg}
-      '';
+  nativeBuildInputs = [ cmake ] ++ (if hwloc != null then [ hwloc ] else [ ]);
+ 
+  cmakeFlags = [
+    (lib.strings.optionalString sharedLinkedLibraryEnable "-DSHARED_LINKED_LIBRARY=ON")
+    (lib.strings.optionalString statsEnable "-DSTATS=ON")
+    (lib.strings.optionalString loggingEnable "-DLOGGING=ON")
+    (lib.strings.optionalString (hwloc != null) "-DHWLOC=ON")
+  ];
 
   meta = {
-    description = "A Task-Parallel Run-Time System for C++";
+    description = "A Toolkit for Programming Parallel Algorithms on Shared-Memory Multicore Machines";
     license = "MIT";
-    homepage = https://github.com/mikerainey/taskparts;
+    homepage = https://cmuparlay.github.io/parlaylib/;
   };
 
 }
