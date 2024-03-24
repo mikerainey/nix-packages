@@ -30,9 +30,9 @@ stdenv.mkDerivation rec {
   ];
 
   meta = {
-    description = "";
+    description = "A Toolkit for Programming Parallel Algorithms on Shared-Memory Multicore Machines";
     license = "MIT";
-    homepage = https://github.com/mikerainey/taskparts;
+    homepage = https://cmuparlay.github.io/parlaylib/;
   };
 
 }

@@ -19,10 +19,11 @@ stdenv.mkDerivation rec {
     (lib.strings.optionalString (hwloc != null) "-DHWLOC=ON")
   ];
 
+
   meta = {
-    description = "A Toolkit for Programming Parallel Algorithms on Shared-Memory Multicore Machines";
+    description = " A C++ library to support task parallelism on multicore platforms";
     license = "MIT";
-    homepage = https://cmuparlay.github.io/parlaylib/;
+    homepage = https://github.com/mikerainey/taskparts;
   };
 
 }
