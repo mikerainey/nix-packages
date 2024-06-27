@@ -6,6 +6,7 @@
   },
   parlaySequential ? false, taskparts ? null, parlayCilkPlus ? false, parlayOpenCilk ? false, parlayOpenMP ? false,
   parlayExamples ? false, parlayInstallExamples ? false, parlayExampleData ? false, parlayFewExamples ? false,
+  parlayDisableElasticParallelism ? false,
   gbenchmarkSrc ? null,
   gtestSrc ? null
 }:
@@ -24,6 +25,7 @@ stdenv.mkDerivation rec {
     (lib.strings.optionalString parlayInstallExamples "-DPARLAY_INSTALL_EXAMPLES=ON")
     (lib.strings.optionalString parlayExampleData "-DPARLAY_EXAMPLE_DATA=ON")
     (lib.strings.optionalString parlayFewExamples "-DFEW_EXAMPLES=ON")
+    (lib.strings.optionalString parlayDisableElasticParallelism "-DPARLAY_ELASTIC_PARALLELISM=OFF")
     (lib.strings.optionalString parlaySequential "-DPARLAY_SEQUENTIAL=ON")
     (lib.strings.optionalString (taskparts != null) "-DPARLAY_TASKPARTS=ON")
     (lib.strings.optionalString parlayCilkPlus "-DPARLAY_CILKPLUS=ON")

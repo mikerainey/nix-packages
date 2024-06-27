@@ -2,6 +2,7 @@
   sharedLinkedLibraryEnable ? false,
   statsEnable ? false, loggingEnable ? false,
   chaseLevDequeEnable ? false,
+  disableElasticParallelism ? false,
   hwloc ? null
 }:
 
@@ -17,6 +18,7 @@ stdenv.mkDerivation rec {
     (lib.strings.optionalString statsEnable "-DSTATS=ON")
     (lib.strings.optionalString loggingEnable "-DLOGGING=ON")
     (lib.strings.optionalString (hwloc != null) "-DHWLOC=ON")
+    (lib.strings.optionalString disableElasticParallelism "-DNONELASTIC=ON")
   ];
 
 
