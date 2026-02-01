@@ -1,8 +1,8 @@
 { stdenv, lib, fetchgit, cmake,
   parlaySrc ? fetchgit {
     url = "https://github.com/mikerainey/parlaylib.git";
-    rev = "9bb91b2613f2644a879242215b0d525813c5131b";
-    sha256 = "sha256-YGIB922DD0XZ36gOEyVpAfiJ3bfBSw+dxe0nuV0SiZc=";
+    rev = "80bf19db490f5985d364277f41a3d558e404b0bd";
+    sha256 = "sha256-/EQteYWf5P0sq9IRbS79ukWmmY99q1NH8L1mgBUzKRY=";
   },
   parlaySequential ? false, taskparts ? null, parlayCilkPlus ? false, parlayOpenCilk ? false, parlayOpenMP ? false,
   parlayExamples ? false, parlayInstallExamples ? false, parlayExampleData ? false, parlayFewExamples ? false,
@@ -10,6 +10,12 @@
   gbenchmarkSrc ? null,
   gtestSrc ? null
 }:
+
+let
+  # Platform detection flags for taskparts (header-only library needs these at compile time)
+  platformFlag = if stdenv.isDarwin then "-DTASKPARTS_DARWIN=1" else "-DTASKPARTS_POSIX=1";
+  archFlag = if stdenv.isAarch64 then "-DTASKPARTS_ARM64=1" else "-DTASKPARTS_X64=1";
+in
 
 stdenv.mkDerivation rec {
 
@@ -19,6 +25,9 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [ cmake ]
                       ++ (if taskparts != null then [ taskparts ] else []);
+
+  # Set CXXFLAGS environment variable for taskparts platform flags
+  CXXFLAGS = lib.optionalString (taskparts != null) "${platformFlag} ${archFlag}";
 
   cmakeFlags = [
     (lib.strings.optionalString parlayExamples "-DPARLAY_EXAMPLES=ON")

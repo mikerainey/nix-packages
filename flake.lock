@@ -1,0 +1,96 @@
+{
+  "nodes": {
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flexibench-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1719530772,
+        "narHash": "sha256-vEm5CszVnVRhrseufArH4M08QBdJWorlqT5x2OsQPQM=",
+        "ref": "refs/heads/main",
+        "rev": "b09856d8ecac4f7b7f0dc692024b22dc63f26d9b",
+        "revCount": 30,
+        "type": "git",
+        "url": "ssh://git@github.com/mikerainey/flexibench"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/mikerainey/flexibench"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1769461804,
+        "narHash": "sha256-msG8SU5WsBUfVVa/9RPLaymvi5bI8edTavbIq3vRlhI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "bfc1b8a4574108ceef22f02bafcf6611380c100d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "flexibench-src": "flexibench-src",
+        "nixpkgs": "nixpkgs",
+        "taskparts-src": "taskparts-src"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "taskparts-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769922214,
+        "narHash": "sha256-7JFbpwEi/euWiQ2QDpcoT+pxZTMEsE9yrafqjT0hCpc=",
+        "ref": "successor",
+        "rev": "8c852357ce3343b8f3b64966efd5026919f2b6f5",
+        "revCount": 790,
+        "type": "git",
+        "url": "https://github.com/mikerainey/taskparts"
+      },
+      "original": {
+        "ref": "successor",
+        "type": "git",
+        "url": "https://github.com/mikerainey/taskparts"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
